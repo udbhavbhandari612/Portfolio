@@ -1,0 +1,27 @@
+
+.banner{
+  position: fixed;
+  top: 0;
+  max-width: 100%;
+  max-height: 150%;
+  z-index: -1;
+  filter: grayscale(0.8) blur(2px);
+}
+
+.stot{
+  position: fixed;
+  bottom: 1em;
+  right: 2em;
+  opacity: 0.5;
+  transition: 300ms ease;
+}
+
+@media screen and (max-width:1000px){
+  .banner{
+    max-width: 150%;
+    min-height: 100%;
+  }
+  .stot{
+    right: 1.5em;
+  }
+}

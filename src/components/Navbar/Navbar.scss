@@ -1,0 +1,55 @@
+.navbar {
+    width: 100%;
+    padding: 0.6em 2em 1em;
+    z-index: 1;
+    .brand-logo {
+        cursor: pointer;
+        font-size: 2em;
+        opacity: 0.5;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-family: "Dancing Script", cursive;
+        .brand-underline {
+            width: 0;
+            border-bottom: 2px solid #e53935;
+        }
+    }
+    .links {
+        display: flex;
+        .link {
+            position: relative;
+            font-family: "Averia Gruesa Libre", cursive;
+            font-size: 1.1em;
+            opacity: 0;
+            cursor: pointer;
+            margin: 0 3em;
+            transition: 400ms ease;
+        }
+        .link::before {
+            position: absolute;
+            content: "";
+            bottom: -5px;
+            width: 0;
+            transition: 300ms ease;
+            border-top: 2px solid #b71c1c;
+        }
+        .link:hover {
+            &::before {
+                width: 100%;
+            }
+            transform: scale(1.2);
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .navbar {
+        padding: 1em 2em;
+        .brand-logo {
+            font-size: 1.2em;
+        }
+        .links {
+            display: none;
+        }
+    }
+}
