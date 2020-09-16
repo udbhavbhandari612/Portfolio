@@ -1,28 +1,49 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './FirstLook.scss'
-import { TweenLite, Bounce, SteppedEase, TweenMax, Power4, gsap } from "gsap"
+import { TweenLite, Bounce, gsap } from "gsap"
 import { ScrollTrigger } from 'gsap/all'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function FirstLook() {
-    const techs = ['Web Development', 'Front-End Technologies', 'Back-End Technologies']
-    const [tech, setTech] = useState('');
-    let typwriterTween = null;
+    const techs = ['Web Development', 'Front-End Technologies', 'Back-End Technologies'];
+    let tech = techs[Math.floor(Math.random() * 100) % 3];
+    const techText = useRef(null);
 
     const TypeWriterAnimation = () => {
-        setTech(techs[Math.floor(Math.random() * 100) % 3]);
-        TweenMax.fromTo('.cursor', 0.6, { opacity: 0 }, { opacity: 1, repeat: -1, repeatDelay: 0.4, ease: Power4.easeInOut });
-        typwriterTween = TweenMax.fromTo('.techText', 3.5,
-            { width: 0 },
-            {
-                width: 'auto',
-                ease: SteppedEase.config(tech.length),
-                delay: 1.5,
-                repeat: -1,
-                repeatDelay: 2.5,
+        let i = 0;
+        let increment = () => {
+            if (tech.length === i) {
+                clearInterval(interval1);
+                setTimeout(() => {
+                    reset();
+                }, 1500);
 
+            } else {
+                techText.current.innerHTML += tech[i];
+                i++;
             }
-        );
+        }
+
+        let interval1 = setInterval(increment, 150);
+        let interval2 = null;
+
+        let reverse = () => {
+            if (i === -1) {
+                i = 0;
+                clearInterval(interval2);
+                tech = techs[Math.floor(Math.random() * 100) % 3];
+                setTimeout(() => {
+                    interval1 = setInterval(increment, 150);
+                }, 1000);
+            } else {
+                techText.current.innerHTML = techText.current.innerHTML.slice(0, i);
+                i--;
+            }
+        }
+
+        let reset = () => {
+            interval2 = setInterval(reverse, 100);
+        }
 
     }
 
@@ -34,7 +55,9 @@ export default function FirstLook() {
     useEffect(() => {
 
         AnimateTexts();
-        TypeWriterAnimation();
+        setTimeout(() => {
+            TypeWriterAnimation();
+        }, 2000);
 
     })
 
@@ -46,10 +69,10 @@ export default function FirstLook() {
                 I am Udbhav<br />
                 <span>Just another <span className="code">{"<CODER/>"}</span></span><br />
                 <span>doing</span><br />
-                <div style={{whiteSpace:'nowrap'}}>
+                <div style={{ whiteSpace: 'nowrap', lineHeight: '1.3em', fontWeight: 700 }}>
                     {'{ '}
                     <div className='code'>
-                        <div className="techText">{tech}</div><span className='cursor'>|</span>
+                        <div ref={techText} className="techText"></div><span className='cursor'>|</span>
                     </div>
                     {'}'}
                 </div>

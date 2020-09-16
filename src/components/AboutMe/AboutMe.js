@@ -16,7 +16,6 @@ export default function AboutMe() {
     const AnimateHeading = () => {
         gsap.timeline()
             .from('.heading', { opacity: 0, y: -10, duration: 1, ease: Bounce.easeOut, delay: 1 })
-            .to('.underline', { duration: 0.5, width: '60%', delay: -0.5, ease: Power3 })
     }
 
     const AnimateContainer = () => {
@@ -32,12 +31,11 @@ export default function AboutMe() {
 
     return (
         <div className='aboutme'>
-            <img src={require('../../Assets/Projects/1.jpg')} className='bg-img'/>
             <span className='heading-container'>
                 <h3 className='heading'>About Me</h3>
                 </span>
             <div className='container'>
-                <img src={require('../../Assets/hand-wave.png')} className='hand-wave' />
+                <img src={require('../../Assets/hand-wave.png')} className='hand-wave' alt=" "/>
                 <p className='aboutme-text'>"A passionate developer, always keen to learn what is new in the developers community, with a slight inclination towards front-end (because afterall reality is what you see <span aria-label='jsx-a11y/accessible-emoji' role='img'>😉</span>)"</p>
             </div>
         </div>
