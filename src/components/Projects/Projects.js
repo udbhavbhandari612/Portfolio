@@ -5,14 +5,10 @@ import { ScrollTrigger } from 'gsap/all';
 
 gsap.registerPlugin(ScrollTrigger)
 
-
-const longName = 'Project Name that might exceed the line boundaries';
-const longDesc = 'Project Description that might exceed the line boundaries, not one time but many a time. You can see this';
 var projects = [
-    { title: 'Project 1', description: 'This is a demo project', link: '#', github: '#', imgPaths: ['Projects/1'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
-    { title: 'Project 2', description: 'This is a demo project', link: '#', github: '#', imgPaths: ['Projects/2'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
-    { title: 'Project 3', description: longDesc + longDesc + longDesc + longDesc + longDesc + longDesc, link: '#', github: '#', imgPaths: ['Projects/3'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
-    { title: longName, description: 'This is a demo project', link: '#', github: '#', imgPaths: ['Projects/4'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
+    { title: 'Chatter-Box', description: 'This is a mobile application interface designed to chat with other users over internet', link: '', github: 'https://github.com/udbhavbhandari612/Chatter-box', imgPaths: ['Projects/1.PNG'], technologies: ['Firebase', 'React Native'], languages: ['JavaScript', 'CSS'] },
+    { title: 'Heart In Hills', description: 'This is a web app developed for Heart in Hills organization', link: 'https://heartinhills.com/', github: '', imgPaths: ['Projects/1.PNG'], technologies: ['Firebase', 'Angular 8'], languages: ['TypeScript', 'HTML', 'CSS'] },
+    { title: 'Portfolio', description: "The source code of this Website/Portfolio", link: '', github: 'https://github.com/udbhavbhandari612/Portfolio', imgPaths: ['Projects/3.PNG'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
 ]
 
 export default function Projects() {
@@ -25,7 +21,7 @@ export default function Projects() {
     const SkewPerScrollVelocity = () => {
         let proxy = { skew: 0 },
             skewSetter = gsap.quickSetter(".card", "skewY", "deg"),
-            clamp = gsap.utils.clamp(-20, 20); 
+            clamp = gsap.utils.clamp(-20, 20);
 
         ScrollTrigger.create({
             onUpdate: (self) => {
@@ -64,6 +60,11 @@ export default function Projects() {
         return result;
     }
 
+    const handleRedirects = (link) => {
+        window.location.href = link;
+        return null;
+    }
+
     return (
         <div className='projects-container'>
             <h4 className='projects-heading'>PROJECTS<div className='projects-underline'></div></h4>
@@ -79,13 +80,17 @@ export default function Projects() {
                                     <div className='overlay overlay2'>
                                         Hover or Click for short description
                                     </div>
-                                    <img src={require(`../../Assets/${project.imgPaths[0]}.jpg`)} className="card-img-top" alt=' ' />
+                                    <img src={require('../../Assets/'+project.imgPaths[0])} className="card-img-top" alt=' ' />
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title" title={project.title}>{project.title}</h5>
                                     <div>
-                                        <button type="button" className="btn btn-outline-secondary btn-block"><i className="fab fa-github"></i> Source Code on GitHub</button>
-                                        <button type="button" className="btn btn-outline-success btn-block"><i className="fas fa-external-link-alt"></i> Visit Site</button>
+                                        <button type="button" className="btn btn-outline-secondary btn-block" disabled={!project.github} onClick={() => handleRedirects(project.github)}>
+                                            <i className="fab fa-github"></i> {!project.github?"Confidential source code ":"Source Code on GitHub"}
+                                            </button>
+                        <button type="button" className="btn btn-outline-success btn-block" disabled={!project.link} onClick={() => handleRedirects(project.link)}>
+                            <i className="fas fa-external-link-alt"></i> {!project.link?"No Site to visit":"Visit Site"}
+                            </button>
                                     </div>
                                 </div>
                                 <div className="card-footer">
