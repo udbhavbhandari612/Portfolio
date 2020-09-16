@@ -7,8 +7,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 var projects = [
     { title: 'Chatter-Box', description: 'This is a mobile application interface designed to chat with other users over internet', link: '', github: 'https://github.com/udbhavbhandari612/Chatter-box', imgPaths: ['Projects/1.PNG'], technologies: ['Firebase', 'React Native'], languages: ['JavaScript', 'CSS'] },
-    { title: 'Heart In Hills', description: 'This is a web app developed for Heart in Hills organization', link: 'https://heartinhills.com/', github: '', imgPaths: ['Projects/1.PNG'], technologies: ['Firebase', 'Angular 8'], languages: ['TypeScript', 'HTML', 'CSS'] },
-    { title: 'Portfolio', description: "The source code of this Website/Portfolio", link: '', github: 'https://github.com/udbhavbhandari612/Portfolio', imgPaths: ['Projects/3.PNG'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
+    { title: 'Heart In Hills', description: 'This is a web app developed for Heart in Hills organization', link: 'https://heartinhills.com/', github: '', imgPaths: ['Projects/2.jpg'], technologies: ['Firebase', 'Angular 8'], languages: ['TypeScript', 'HTML', 'CSS'] },
+    { title: 'Portfolio', description: "The source code of this Website/Portfolio", link: 'https://udbhavbhandari612.github.io/', github: 'https://github.com/udbhavbhandari612/Portfolio', imgPaths: ['Projects/3.PNG'], technologies: ['Firebase', 'ReactJS', 'GSAP'], languages: ['JavaScript', 'HTML', 'CSS'] },
 ]
 
 export default function Projects() {
@@ -61,7 +61,7 @@ export default function Projects() {
     }
 
     const handleRedirects = (link) => {
-        window.location.href = link;
+        window.open(link,'_blank')
         return null;
     }
 
@@ -74,7 +74,7 @@ export default function Projects() {
                         return (
                             <div className="card" key={index}>
                                 <div className='img-top-container'>
-                                    <div className='overlay'>
+                                    <div className='overlay' >
                                         {project.description}
                                     </div>
                                     <div className='overlay overlay2'>
@@ -102,7 +102,6 @@ export default function Projects() {
                     })
                 }
             </div>
-
         </div >
     )
 }
