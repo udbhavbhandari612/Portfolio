@@ -39,10 +39,6 @@ export default function Home() {
                 end: 'top -=50',
                 scrub: true,
             }
-        }).to('.nav', {
-            background: 'black',
-            boxShadow: '0 0 10px 1px #E53935',
-            duration: 0.5,
         })
     }
 
@@ -61,6 +57,10 @@ export default function Home() {
             y = document.getElementById('projects').offsetTop;
             gsap.to(window, 0.8, { scrollTo: y - 80, ease: Power3.easeOut })
         }
+        else if (type === '3') {
+            y = document.getElementById('contact_me').offsetTop;
+            gsap.to(window, 0.8, { scrollTo: y - 80, ease: Power3.easeOut })
+        }
         else if (type === 'top') {
             gsap.to(window, 0.8, { scrollTo: 0, ease: Power3.easeOut })
         }
@@ -69,19 +69,19 @@ export default function Home() {
 
     return (
         <div style={{ overflowX: 'hidden' }}>
-            <img src={require('../../Assets/banner.jpg')} className='banner' alt="" />
+            <img src={require('../../Assets/bg2.jpg')} className='banner' alt="" />
 
-                <Navbar handleLinks={(type) => handleLinks(type)} />
-       
+            <Navbar handleLinks={(type) => handleLinks(type)} />
+
             <div id='top' />
             <div className='trigger-banner'>
                 <FirstLook />
             </div>
             <div id='aboutMe' /><AboutMe />
             <div id='projects' /><Projects />
-            <Footer/>
+            <div id='contact_me' /><Footer />
             <div className='stot' ref={stot}>
-                <button type="button" class="btn btn-outline-primary rounded-circle" title='Go to top'
+                <button type="button" className="btn btn-outline-primary rounded-circle" title='Go to top'
                     onClick={() => handleLinks('top')} style={{ padding: '5px 7px' }}>
                     <i className="fas fa-chevron-circle-up fa-2x"></i>
                 </button>

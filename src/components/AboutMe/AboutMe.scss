@@ -4,9 +4,8 @@ $Averia: "Averia Gruesa Libre", cursive;
 .aboutme {
     display: flex;
     flex-direction: column;
-    background-color: black;
+    background-color: rgba(0,0,0,0.5);
     align-items: center;
-    min-height: 90vh;
     overflow: unset;
     position: relative;
     padding: 0 0 5em;
@@ -18,7 +17,8 @@ $Averia: "Averia Gruesa Libre", cursive;
         min-height: 100%;
         max-width: 150%;
         max-height: 150%;
-        opacity: 0.5;
+        opacity: 0.8;
+        filter: blur(2px);
     }
     .heading-container {
         padding: 0.5em 1em;
