@@ -8,6 +8,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Footer() {
     const [sending, setSending] = useState(false);
+    const [name,setName]=useState('');
+    const [email,setEmail]=useState('');
+    const [message,setMessage]=useState('');
+
 
     const AnimateHeading = () => {
         gsap.timeline({
@@ -28,10 +32,10 @@ export default function Footer() {
         e.preventDefault();
         setSending(true);
         let templateParams = {
-            from_name: e.target['name'].value.trim(),
-            from_email: e.target['email'].value.trim(),
+            from_name: name.trim(),
+            from_email: email.trim(),
             to_name: 'Udbhav Bhandari',
-            message: e.target['comment'].value.trim(),
+            message: message.trim(),
         }
 
         emailjs.send(
@@ -40,7 +44,9 @@ export default function Footer() {
             templateParams,
             'user_oXKmlNQ582qGid4NXID4O'
         ).then(res => {
-            e.target.reset();
+            setName('')
+            setEmail('')
+            setMessage('')
             const alert = document.getElementById('alertSection');
             alert.style.maxHeight = '10em';
             setTimeout(() => {
@@ -64,16 +70,19 @@ export default function Footer() {
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="name">Name</label><span className='red-star'> *</span>
-                            <input type="text" className="form-control" id='name' placeholder='Your Name' required />
+                            <input type="text" className="form-control" id='name' 
+                            placeholder='Your Name' value={name} onChange={(e)=>setName(e.target.value)} required />
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="email">Email</label><span className='red-star'> *</span>
-                            <input type="email" className="form-control" id='email' placeholder='Your Email' required />
+                            <input type="email" className="form-control" id='email' placeholder='Your Email'
+                            value={email} onChange={(e)=>setEmail(e.target.value)} required />
                         </div>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="comment">Suggestion / message</label><span className='red-star'> *</span>
-                        <textarea type="text" className="form-control" id='comment' placeholder="Your comment" required />
+                        <label htmlFor="comment">Suggestion / Query</label><span className='red-star'> *</span>
+                        <textarea type="text" className="form-control" id='comment' placeholder="Your comment"
+                        value={message} onChange={(e)=>setMessage(e.target.value)} required />
                     </div>
 
                     <button type="submit" className="btn btn-primary" disabled={sending}>
