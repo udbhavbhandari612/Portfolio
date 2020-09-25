@@ -35,7 +35,10 @@ export default function Navbar({ handleLinks }) {
                 <div onClick={() => handleLinks('1')} className='link'>About Me</div>
                 <div onClick={() => handleLinks('2')} className='link'>Projects</div>
                 <div onClick={() => handleLinks('3')} className='link'>Contact Me</div>
+                <div onClick={() => handleLinks('4')} className='link'>
+                <a href={require('../../Assets/Resume_Udbhav(Original).docx')} download='resume'>Resume&nbsp;<i className="fa fa-download" aria-hidden="true"></i></a></div>
             </div>
+            <div className='menu-toggler' onClick={() => handleLinks('5')}><i className="fas fa-bars fa-lg"></i></div>
         </div>
     )
 }
