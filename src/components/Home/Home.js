@@ -115,7 +115,7 @@ export default function Home() {
                     <div onClick={() => { ToggleBubble(); return handleLinks('2') }} className='link1'>Projects</div>
                     <div onClick={() => { ToggleBubble(); return handleLinks('3') }} className='link1'>Contact Me</div>
                     <div onClick={() => { ToggleBubble(); return handleLinks('4') }} className='link1'>
-                        <a href={require('../../Assets/Resume_Udbhav(Original).docx')} download='Resume'>Resume&nbsp;<i className="fa fa-download" aria-hidden="true"></i></a>
+                        <a href={require('../../Assets/Resume_Udbhav(Original).docx')} target='_blank' download='Resume'>Resume&nbsp;<i className="fa fa-download" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
